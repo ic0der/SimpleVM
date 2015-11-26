@@ -136,23 +136,16 @@ int main(int argc, char **argv)
 			break;
 		case Mode::Compile:
 			{
-				std::string filename = argv[2]; filename += ".s";
-
-				double compiletime = 0;
-				svm::Util::HRT hrt;
-
 				try
 				{
+					std::string filename = argv[2]; filename += ".s";
 					svm::Compiler::Compiler c(filename);
 					svm::Bytecode &bc = c.DoCompile();
-					compiletime = hrt.Elapsed();
 					filename = argv[2]; filename +=  + ".sc";
 					bc.WriteToFile(filename);
 				}
 				catch (svm::BaseError &error) { std::cout << error; }
 				catch (std::string &error) { std::cout << "[ERROR]" << error << std::endl; }
-
-				//std::cout << "Finished. Took " << hrt.Reset() << "s - " << compiletime << "s Compile time" << std::endl;
 			}
 			break;
 		case Mode::CompileRun:

@@ -3,7 +3,7 @@
 #if !defined(SVM_UTILS_H_)
 #define SVM_UTILS_H_
 
-#include "Includes.hpp"
+#include "Logger.hpp"
 #include "Types.hpp"
 
 namespace svm
@@ -67,7 +67,7 @@ namespace svm
 		istr >> value;
 		if (!istr.fail() && istr.eof())
 			return value;
-		else throw "Cannot convert " + str + " to given type";
+		else throw GenericError("Cannot convert " + str + " to given type");
 	}
 
 	template <typename T>

@@ -19,7 +19,7 @@ namespace svm
 
 	typedef std::size_t Length;
 	typedef long long SLength;
-	typedef std::uint32_t Hash;
+	typedef std::int32_t Hash;
 	typedef std::uint32_t UID;
 	typedef std::uint32_t BCOffset;
 	typedef std::uint32_t BCLength;

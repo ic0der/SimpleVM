@@ -21,6 +21,12 @@ namespace svm
 		bool loaded;
 		bool running;
 		BCOffset ip;
+		std::stack<BCOffset> callstack;
+
+	public:
+		Stack stack;
+		Heap heap;
+		std::unordered_map<Hash, NativeFunction> nativeregistery;
 		struct
 		{
 			Byte ver_maj;
@@ -29,12 +35,6 @@ namespace svm
 			std::unordered_map<Hash, BCOffset> exports;
 			Bytecode bytecode;
 		} chunk;
-		std::stack<BCOffset> callstack;
-
-	public:
-		Stack stack;
-		Heap heap;
-		std::unordered_map<Hash, NativeFunction> nativeregistery;
 		
 	private:
 		Byte Fetch();
