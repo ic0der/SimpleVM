@@ -60,9 +60,15 @@ namespace svm
 
 	Hash Util::HashFunc(std::string name)
 	{
-		Hash hash;
+		// FNV-1a hash
+		UInt offset = 2166136261;
+		UInt prime = 16777619;
+		Hash hash = offset;
 		for (Length i = 0; i < name.length(); i++)
-			hash = (hash << 1) ^ name[i];
+		{
+			hash = hash ^ name[i];
+			hash = hash * prime;
+		}
 		return hash;
 	}
 

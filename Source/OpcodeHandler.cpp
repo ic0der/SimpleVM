@@ -220,11 +220,104 @@ namespace svm
 			switch (opc)
 			{
 				case Opcode::ID::CLE:
+					{
+						Value *v2 = ctx.stack.Pop();
+						Value *v1 = ctx.stack.Pop();
+
+						if (v1->type == SType::Number && v2->type == SType::Number)
+						{
+							Number r = v1->pool.n_ <= v2->pool.n_ ? 1 : 0;
+							ctx.stack.Push(new Value(SType::Number, {.n_ = r}));
+						}
+
+						delete v1;
+						delete v2;
+					}
+					break;
 				case Opcode::ID::CLT:
+					{
+						Value *v2 = ctx.stack.Pop();
+						Value *v1 = ctx.stack.Pop();
+
+						if (v1->type == SType::Number && v2->type == SType::Number)
+						{
+							Number r = v1->pool.n_ < v2->pool.n_ ? 1 : 0;
+							ctx.stack.Push(new Value(SType::Number, {.n_ = r}));
+						}
+
+						delete v1;
+						delete v2;
+					}
+					break;
 				case Opcode::ID::CGE:
+					{
+						Value *v2 = ctx.stack.Pop();
+						Value *v1 = ctx.stack.Pop();
+
+						if (v1->type == SType::Number && v2->type == SType::Number)
+						{
+							Number r = v1->pool.n_ >= v2->pool.n_ ? 1 : 0;
+							ctx.stack.Push(new Value(SType::Number, {.n_ = r}));
+						}
+
+						delete v1;
+						delete v2;
+					}
+					break;
 				case Opcode::ID::CGT:
+					{
+						Value *v2 = ctx.stack.Pop();
+						Value *v1 = ctx.stack.Pop();
+
+						if (v1->type == SType::Number && v2->type == SType::Number)
+						{
+							Number r = v1->pool.n_ > v2->pool.n_ ? 1 : 0;
+							ctx.stack.Push(new Value(SType::Number, {.n_ = r}));
+						}
+
+						delete v1;
+						delete v2;
+					}
+					break;
 				case Opcode::ID::CEQ:
+					{
+						Value *v2 = ctx.stack.Pop();
+						Value *v1 = ctx.stack.Pop();
+
+						if (v1->type == SType::Number && v2->type == SType::Number)
+						{
+							Number r = v1->pool.n_ == v2->pool.n_ ? 1 : 0;
+							ctx.stack.Push(new Value(SType::Number, {.n_ = r}));
+						}
+						else if (v1->type == SType::String && v2->type == SType::String)
+						{
+							Number r = StringUtils::ToCString(v1->pool.s_) == StringUtils::ToCString(v2->pool.s_) ? 1 : 0;
+							ctx.stack.Push(new Value(SType::Number, {.n_ = r}));
+						}
+
+						delete v1;
+						delete v2;
+					}
+					break;
 				case Opcode::ID::CNE:
+					{
+						Value *v2 = ctx.stack.Pop();
+						Value *v1 = ctx.stack.Pop();
+
+						if (v1->type == SType::Number && v2->type == SType::Number)
+						{
+							Number r = v1->pool.n_ != v2->pool.n_ ? 1 : 0;
+							ctx.stack.Push(new Value(SType::Number, {.n_ = r}));
+						}
+						else if (v1->type == SType::String && v2->type == SType::String)
+						{
+							Number r = StringUtils::ToCString(v1->pool.s_) != StringUtils::ToCString(v2->pool.s_) ? 1 : 0;
+							ctx.stack.Push(new Value(SType::Number, {.n_ = r}));
+						}
+
+						delete v1;
+						delete v2;
+					}
 					break;
 				default: return false;
 			}

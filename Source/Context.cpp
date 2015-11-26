@@ -38,7 +38,6 @@ namespace svm
 		if (!loaded)
 			throw GenericError("No loaded program");
 
-		ip = 0;
 		running = true;
 		//bool dbg = false;
 		while (running)

@@ -115,9 +115,10 @@ int main(int argc, char **argv)
 			break;
 		case Mode::Fastrun:
 			{
+				std::cout << "Not ready yet!" << std::endl;
+				break;/*
 				try
 				{
-					std::cout << "This mode is not finished yet and has problems" << std::endl;
 					std::string filename = argv[2]; filename += ".s";
 					std::string &program = svm::Util::File::ReadFile(filename);
 					svm::Context ctx;
@@ -130,7 +131,7 @@ int main(int argc, char **argv)
 					ctx.Run();
 				}
 				catch (svm::BaseError &error) { std::cout << error; }
-				catch (std::string &error) { std::cout << "[ERROR]" << error << std::endl; }
+				catch (std::string &error) { std::cout << "[ERROR]" << error << std::endl; }*/
 			}
 			break;
 		case Mode::Compile:
@@ -171,7 +172,6 @@ int main(int argc, char **argv)
 					ctx.RegisterNative(API_print, "print");
 					ctx.RegisterNative(API_read, "read");
 					ctx.RegisterNative(API_strconcat, "strconcat");
-
 					ctx.LoadFile(filename);
 					ctx.Run();
 				}
@@ -182,13 +182,13 @@ int main(int argc, char **argv)
 		case Mode::Decompile:
 			{
 				std::cout << "Not ready yet!" << std::endl;
-				break;
+				break;/*
 				// Danger, don't use :p
 				std::string filename = argv[2]; filename += ".sc";
 				svm::Bytecode bc(filename);
 				std::string &buffer = svm::Decompile(bc);
 				filename = argv[2]; filename += ".dec.s";
-				svm::Util::File::WriteFile(filename, buffer);
+				svm::Util::File::WriteFile(filename, buffer);*/
 			}
 			break;
 	}
